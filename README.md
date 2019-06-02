@@ -16,4 +16,6 @@
 
 # geliştirmede yardımcı olanlar
 
+- henny (chatlog)
+
 - eZR (mapbildirimi fix)
