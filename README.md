@@ -8,6 +8,10 @@
 
 - Chatlog (tüm sohbeti discorda mesaj olarak gönderir)
 
-- Map Bildirimi (map bittiğinde ve yeni map açıldığında discorda mesaj gönderir)﻿
+- Map Bildirimi (map bittiğinde ve yeni map açıldığında discorda mesaj gönderir)
 
-DEV VERSION: 0.02
+DEV VERSION: 0.03
+
+# geliştirmede yardımcı olanlar
+
+- eZR (mapbildirimi fix)
