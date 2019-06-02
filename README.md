@@ -6,16 +6,22 @@
 
 - !admincagir (sunucuya yetkili çağırmak için kullanılır)
 
-- Chatlog (tüm sohbeti discorda mesaj olarak gönderir)
+- Chat Log (tüm sohbeti discorda mesaj olarak gönderir)
 
 - Map Bildirimi (map bittiğinde ve yeni map açıldığında discorda mesaj gönderir)
 
-- Adminlog (Adminlerin sunucuda ne kadar oynadığını gönderir. discord_adminlog_webhook "" bu Cvar ile ayarlayacaksınız. Bu eklenti steamworks kullanıyor.)
+- Admin Time Log (Adminlerin sunucuda ne kadar oynadığını gönderir. discord_adminlog_webhook "" bu Cvar ile ayarlayacaksınız. Bu eklenti steamworks kullanıyor.)
 
-**DEV VERSION:** 0.04
+- Admin Log (Adminlerin chat geçmişini discorda mesaj olarak gönderir)
 
-# geliştirmede yardımcı olanlar
+**DEV VERSION:** 0.05
 
-- henny (chatlog)
+# Sonsuz Teşekkürler
+
+- henny (chatlog, adminlog yazarı)
 
 - eZR (mapbildirimi fix)
+
+# not2easy FORUM
+
+https://not2easy.pro/forums/topic/16-discord-eklentileri-botsuz-%C3%A7al%C4%B1%C5%9F%C4%B1r/
