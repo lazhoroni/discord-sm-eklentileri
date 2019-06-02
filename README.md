@@ -10,7 +10,9 @@
 
 - Map Bildirimi (map bittiğinde ve yeni map açıldığında discorda mesaj gönderir)
 
-DEV VERSION: 0.03
+- Adminlog (Adminlerin sunucuda ne kadar oynadığını gönderir. discord_adminlog_webhook "" bu Cvar ile ayarlayacaksınız. Bu eklenti steamworks kullanıyor.)
+
+**DEV VERSION:** 0.04
 
 # geliştirmede yardımcı olanlar
 
