@@ -29,12 +29,13 @@ public OnPluginStart()
 			SetFailState("Failed to create directory at /sourcemod/logs/admin-connections - Please manually create that path and reload this plugin.");
 	}
 	
-	webhook = CreateConVar("csc_discordlog_webhook", "Degistiriniz", "Discord #admin-baglantilari kanal�n�n webhook urlsini giriniz.");
+	webhook = CreateConVar("discord_adminlog_webhook", "Degistiriniz", "Discord webhook");
 	
 	RegAdminCmd("admin_logging",Tmp,ADMFLAG_GENERIC);
 	HookEvent("player_connect", Event_PlayerConnect, EventHookMode_Post);
 	HookEvent("player_disconnect", Event_PlayerDisconnect, EventHookMode_Pre);
 }
+
 public Action:Tmp(client,args){
 }
 
@@ -101,7 +102,7 @@ public Action:LogConnectionInfo(Handle:timer, any:UserID)
 			
 			new Handle:FileHandle = OpenFile(g_sFilePath, "a+");
 			
-			WriteFileLine(FileHandle, "%s - <%s> <%s> <%s> oyuna girdi(%s)",
+			WriteFileLine(FileHandle, "%s - <%s> <%s> <%s> oyuna girdi (%s)",
 									FormatedTime,
 									PlayerName,
 									Authid,
@@ -109,7 +110,7 @@ public Action:LogConnectionInfo(Handle:timer, any:UserID)
 									Country);
 
 			char mesaj[256];
-			Format(mesaj, sizeof(mesaj), "%s - <%s> <%s> <%s> oyuna girdi(%s)\n",
+			Format(mesaj, sizeof(mesaj), "%s - <%s> <%s> <%s> oyuna girdi (%s)\n",
 									FormatedTime,
 									PlayerName,
 									Authid,
