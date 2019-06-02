@@ -6,6 +6,7 @@
 #include <sourcemod>
 #include <discord>
 
+
 #define LoopValidClients(%1) for(int %1 = 1; %1 <= MaxClients; %1++) if(IsClientValid(%1))
 #define MAP_MSG "{\"username\":\"{BOTNAME}\", \"content\":\"{MENTION}\",\"attachments\": [{\"color\": \"{COLOR}\",\"title\": \"Sunucuya Bağlan (steam://connect/{SERVER_IP}:{SERVER_PORT})\",\"fields\": [{\"title\": \"Oynana Harita\",\"value\": \"{HARITA}\",\"short\": true},{\"title\": \"Çevrimiçi Oyuncu\",\"value\": \"{PLAYERS}\",\"short\": true}]}]}"
 
@@ -57,47 +58,12 @@ void UpdateIPPort()
 		FormatEx(g_sHostIP, sizeof(g_sHostIP), "%d.%d.%d.%d", (ip >> 24) & 0x000000FF, (ip >> 16) & 0x000000FF, (ip >> 8) & 0x000000FF, ip & 0x000000FF);
 	}
 }
-
 public void OnMapStart()
 {
-	char sMention[512];
-	g_cMention.GetString(sMention, sizeof(sMention));
-	
-	char sColor[8];
-	g_cColor.GetString(sColor, sizeof(sColor));
-	
-	char sMap[32]
-	GetCurrentMap(sMap, sizeof(sMap));
-	
-	int iMax = GetMaxHumanPlayers();
-	
-	int iPlayers = 0;
-	
-	LoopValidClients(i)
-	{
-		iPlayers++;
-	}
-	
-	char sPlayers[24];
-	Format(sPlayers, sizeof(sPlayers), "%d/%d", iPlayers, iMax);
-	
-	char sBot[512];
-	g_cBotName.GetString(sBot, sizeof(sBot));
-	
-	char sMSG[512] = MAP_MSG;
-	
-	ReplaceString(sMSG, sizeof(sMSG), "{BOTNAME}", sBot);
-	ReplaceString(sMSG, sizeof(sMSG), "{COLOR}", sColor);
-	ReplaceString(sMSG, sizeof(sMSG), "{SERVER_IP}", g_sHostIP);
-	ReplaceString(sMSG, sizeof(sMSG), "{SERVER_PORT}", g_sHostPort);
-	ReplaceString(sMSG, sizeof(sMSG), "{PLAYERS}", sPlayers);
-	ReplaceString(sMSG, sizeof(sMSG), "{HARITA}", sMap);
-	ReplaceString(sMSG, sizeof(sMSG), "{MENTION}", sMention);
-	
-	SendMessage(sMSG);
+    CreateTimer(15.0, bekleme, _, TIMER_FLAG_NO_MAPCHANGE);
 }
 
-public void OnMapEnd()
+public Action bekleme(Handle bekleme2)
 {
 	char sMention[512];
 	g_cMention.GetString(sMention, sizeof(sMention));
@@ -110,12 +76,14 @@ public void OnMapEnd()
 	
 	int iMax = GetMaxHumanPlayers();
 	
-	int iPlayers = 0;
+	int iPlayers = GetClientCount();
 	
-	LoopValidClients(i)
+	//int iPlayers = 0;
+	
+	/*LoopValidClients(i)
 	{
 		iPlayers++;
-	}
+	}*/
 	
 	char sPlayers[24];
 	Format(sPlayers, sizeof(sPlayers), "%d/%d", iPlayers, iMax);
@@ -135,6 +103,45 @@ public void OnMapEnd()
 	
 	SendMessage(sMSG);
 }
+/*public void OnMapEnd()
+{
+	char sMention[512];
+	g_cMention.GetString(sMention, sizeof(sMention));
+	
+	char sColor[8];
+	g_cColor.GetString(sColor, sizeof(sColor));
+	
+	char sMap[32]
+	GetCurrentMap(sMap, sizeof(sMap));
+	
+	int iMax = GetClientCount();
+	
+	int iPlayers = 0;
+	
+	LoopValidClients(i)
+	{
+		iPlayers++;
+	}
+	
+	char sPlayers[24];
+    Format(sPlayers, sizeof(sPlayers), "%d/%d", iPlayers, iMax);
+	
+	char sBot[512];
+	g_cBotName.GetString(sBot, sizeof(sBot));
+	
+	char sMSG[512] = MAP_MSG;
+	
+	ReplaceString(sMSG, sizeof(sMSG), "{BOTNAME}", sBot);
+	ReplaceString(sMSG, sizeof(sMSG), "{COLOR}", sColor);
+	ReplaceString(sMSG, sizeof(sMSG), "{SERVER_IP}", g_sHostIP);
+	ReplaceString(sMSG, sizeof(sMSG), "{SERVER_PORT}", g_sHostPort);
+	ReplaceString(sMSG, sizeof(sMSG), "{PLAYERS}", sPlayers);
+	ReplaceString(sMSG, sizeof(sMSG), "{HARITA}", sMap);
+	ReplaceString(sMSG, sizeof(sMSG), "{MENTION}", sMention);
+	
+	SendMessage(sMSG);
+}
+*/
 
 SendMessage(char[] sMessage)
 {
@@ -143,7 +150,7 @@ SendMessage(char[] sMessage)
 	Discord_SendMessage(sWebhook, sMessage);
 }
 
-bool IsClientValid(int client)
+/*bool IsClientValid(int client)
 {
     if (client > 0 && client <= MaxClients)
     {
@@ -154,4 +161,4 @@ bool IsClientValid(int client)
     }
 
     return false;
-}
+}*/
